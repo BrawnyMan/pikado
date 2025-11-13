@@ -17,9 +17,6 @@ body {
     color: var(--text);
 }
 
-/* ========================= */
-/*  MAIN TITLE EDIT FIELD    */
-/* ========================= */
 #mainTitle {
     font-size: 32px;
     font-weight: bold;
@@ -35,7 +32,6 @@ body {
     background: #fffde7;
 }
 
-/* ADMIN CONTROLS */
 .controls {
     margin-bottom: 25px;
     display: none;
@@ -64,7 +60,6 @@ body {
     opacity: 1;
 }
 
-/* Animation classes for JS */
 .column.add-animation {
     opacity: 0;
     transform: translateY(20px);
@@ -79,7 +74,6 @@ body {
     transform: translateY(20px) !important;
 }
 
-/* AUTOMAT TITLE INPUT */
 .automat-name {
     width: 100%;
     font-size: 18px;
@@ -209,7 +203,6 @@ button:disabled {
     transform: none;
 }
 
-/* Display mode text elements */
 .automat-name-display {
     width: 100%;
     font-size: 18px;

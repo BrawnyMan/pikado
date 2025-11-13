@@ -5,9 +5,6 @@ const mode = urlParams.get('mode') || 'display';
 
 document.body.classList.toggle('display-mode', mode === 'display');
 
-/* =============================== */
-/*   DEBOUNCE FUNCTION             */
-/* =============================== */
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -20,15 +17,11 @@ function debounce(func, wait) {
     };
 }
 
-/* =============================== */
-/*   LOAD MAIN TITLE               */
-/* =============================== */
 window.addEventListener("load", () => {
     const title = localStorage.getItem("mainTitle") || "Pikado";
     const titleEl = document.getElementById("mainTitle");
     
     if (mode !== "admin") {
-        // Display mode: replace input with text
         if (titleEl) {
             const textEl = document.createElement("div");
             textEl.id = "mainTitle";
@@ -37,12 +30,10 @@ window.addEventListener("load", () => {
             titleEl.parentNode.replaceChild(textEl, titleEl);
         }
     } else {
-        // Admin mode: use input with debounce
-        if (titleEl) {
+                if (titleEl) {
             titleEl.value = title;
             const debouncedSave = debounce(() => {
                 localStorage.setItem("mainTitle", titleEl.value);
-                // Trigger update for display mode
                 localStorage.setItem('lastUpdateTime', Date.now().toString());
             }, 1000);
             titleEl.addEventListener("input", debouncedSave);
@@ -50,9 +41,6 @@ window.addEventListener("load", () => {
     }
 });
 
-/* =============================== */
-/*   LOAD PLAYER VALUES            */
-/* =============================== */
 function loadValues() {
     for (let i = 1; i <= automats * 2 + 10; i++) {
         const el = document.getElementById(`v${i}`);
@@ -61,11 +49,7 @@ function loadValues() {
     }
 }
 
-/* =============================== */
-/*   LOAD DISPLAY VALUES           */
-/* =============================== */
 function loadDisplayValues() {
-    // Update automat names
     for (let i = 1; i <= automats; i++) {
         const nameEl = document.getElementById(`name_${i}`);
         const nameKey = `automat_name_${i}`;
@@ -73,7 +57,6 @@ function loadDisplayValues() {
         if (nameEl) nameEl.textContent = automatName;
     }
     
-    // Update player values (including next section)
     for (let i = 1; i <= automats * 2 + 10; i++) {
         const el = document.getElementById(`v${i}`);
         const saved = localStorage.getItem(`v${i}`);
@@ -82,7 +65,6 @@ function loadDisplayValues() {
                 el.textContent = saved;
                 el.classList.remove('placeholder-text');
             } else {
-                // Set placeholder text for empty values
                 if (i <= automats * 2) {
                     const playerNum = ((i - 1) % 2) + 1;
                     el.textContent = `Igralec ${playerNum}`;
@@ -95,7 +77,6 @@ function loadDisplayValues() {
         }
     }
     
-    // Update main title
     const titleEl = document.getElementById("mainTitle");
     if (titleEl && mode !== "admin") {
         const title = localStorage.getItem("mainTitle") || "Pikado";
@@ -103,9 +84,6 @@ function loadDisplayValues() {
     }
 }
 
-/* =============================== */
-/*   RENDER AUTOMATS               */
-/* =============================== */
 function renderAutomats() {
     const container = document.getElementById("automatsContainer");
     container.innerHTML = "";
@@ -121,7 +99,6 @@ function renderAutomats() {
         html.classList.add("column", "add-animation");
 
         if (mode !== "admin") {
-            // Display mode: use text elements
             const nameA = localStorage.getItem(`v${indexA}`) || "";
             const nameB = localStorage.getItem(`v${indexB}`) || "";
             
@@ -131,7 +108,6 @@ function renderAutomats() {
                 <div class="player-display ${!nameB ? 'placeholder-text' : ''}" id="v${indexB}">${nameB || "Igralec 2"}</div>
             `;
         } else {
-            // Admin mode: use inputs
             html.innerHTML = `
                 <input class="automat-name" id="name_${i}" value="${automatName}" />
                 <textarea id="v${indexA}" placeholder="Igralec 1"></textarea>
@@ -149,23 +125,19 @@ function renderAutomats() {
         loadValues();
         document.querySelectorAll('button').forEach(b => b.style.display = 'inline-block');
 
-        // Add debounced listeners for automat names
         document.querySelectorAll('.automat-name').forEach((input, idx) => {
             const index = idx + 1;
             const debouncedSave = debounce(() => {
                 localStorage.setItem(`automat_name_${index}`, input.value);
-                // Trigger update for display mode
                 localStorage.setItem('lastUpdateTime', Date.now().toString());
             }, 1000);
             input.addEventListener("input", debouncedSave);
         });
 
-        // Add debounced listeners for textareas
         document.querySelectorAll('textarea').forEach(textarea => {
             const debouncedSave = debounce(() => {
                 const id = textarea.id;
                 localStorage.setItem(id, textarea.value);
-                // Trigger update for display mode
                 localStorage.setItem('lastUpdateTime', Date.now().toString());
             }, 1000);
             textarea.addEventListener("input", debouncedSave);
@@ -175,7 +147,6 @@ function renderAutomats() {
         if (ctrl) ctrl.style.display = "block";
         document.getElementById('adminPanel').style.display = 'block';
     } else {
-        // Display mode: load values into text elements
         loadDisplayValues();
     }
 }
@@ -183,7 +154,6 @@ function renderAutomats() {
 window.onload = () => {
     renderAutomats();
     
-    // Convert next section textareas to text in display mode
     if (mode !== "admin") {
         const nextSection = document.querySelector('.next-section');
         if (nextSection) {
@@ -201,7 +171,6 @@ window.onload = () => {
             });
         }
     } else {
-        // Admin mode: add debounced listeners to next section textareas
         const nextSection = document.querySelector('.next-section');
         if (nextSection) {
             const textareas = nextSection.querySelectorAll('textarea');
@@ -209,7 +178,6 @@ window.onload = () => {
                 const debouncedSave = debounce(() => {
                     const id = textarea.id;
                     localStorage.setItem(id, textarea.value);
-                    // Trigger update for display mode
                     localStorage.setItem('lastUpdateTime', Date.now().toString());
                 }, 1000);
                 textarea.addEventListener("input", debouncedSave);
@@ -220,20 +188,13 @@ window.onload = () => {
     startSyncBehavior();
 };
 
-/* =============================== */
-/*   ADD AVTOMAT                   */
-/* =============================== */
 function addAvtomat() {
     automats++;
     localStorage.setItem("automats", automats);
-    // Trigger update for display mode
     localStorage.setItem('lastUpdateTime', Date.now().toString());
     renderAutomats();
 }
 
-/* =============================== */
-/*   REMOVE AVTOMAT                */
-/* =============================== */
 function removeAvtomat() {
     if (automats === 1) return alert("Mora ostati vsaj 1 avtomat!");
 
@@ -247,25 +208,30 @@ function removeAvtomat() {
 
     automats--;
     localStorage.setItem("automats", automats);
-    // Trigger update for display mode
     localStorage.setItem('lastUpdateTime', Date.now().toString());
     
     renderAutomats();
 }
 
-/* =============================== */
-/*   NEW PAIR TRANSFER             */
-/* =============================== */
+function playSound() {
+    try {
+        const audio = new Audio('sounds/sound.mp3');
+        audio.play().catch(err => {
+            console.log('Sound could not be played:', err);
+        });
+    } catch (err) {
+        console.log('Sound error:', err);
+    }
+}
+
 function novPar(stolpec) {
     const btn = document.getElementById(`btn_${stolpec}`);
     
-    // Disable button to prevent rapid clicking
     if (btn) {
         btn.disabled = true;
         btn.style.opacity = '0.5';
         btn.style.cursor = 'not-allowed';
         
-        // Re-enable after 1 second
         setTimeout(() => {
             btn.disabled = false;
             btn.style.opacity = '1';
@@ -280,7 +246,6 @@ function novPar(stolpec) {
     const next2 = document.getElementById('v8').value.trim();
 
     if (!next1 && !next2) {
-        // Re-enable button if validation fails
         if (btn) {
             btn.disabled = false;
             btn.style.opacity = '1';
@@ -288,6 +253,8 @@ function novPar(stolpec) {
         }
         return alert("Vnesi naslednji par pred prenosom!");
     }
+    
+    playSound();
 
     const prev1 = document.getElementById(vA).value;
     const prev2 = document.getElementById(vB).value;
@@ -310,13 +277,9 @@ function novPar(stolpec) {
     log.push(`${now} - ${name}: (${prev1 || "-"}, ${prev2 || "-"}) → (${next1 || "-"}, ${next2 || "-"})`);
     localStorage.setItem("log", JSON.stringify(log));
     
-    // Trigger update for display mode
     localStorage.setItem('lastUpdateTime', Date.now().toString());
 }
 
-/* =============================== */
-/*   HISTORY MODAL                 */
-/* =============================== */
 function showHistory() {
     const content = document.getElementById('historyContent');
     content.innerHTML = log.length
@@ -339,24 +302,16 @@ function clearHistory() {
     showHistory();
 }
 
-/* =============================== */
-/*   AUTO SYNC                     */
-/* =============================== */
 function startSyncBehavior() {
     if (mode === 'admin') {
-        // Admin mode: updates happen automatically via debounced localStorage saves
-        // No refresh timer needed anymore
     } else {
-        // Display mode: listen for localStorage changes and update without reload
         window.addEventListener('storage', e => {
             if (e.key === 'lastUpdateTime' || e.key === 'automats') {
-                // If automats count changed, re-render everything
                 if (e.key === 'automats') {
                     const newAutomats = parseInt(localStorage.getItem('automats') || '1');
                     if (newAutomats !== automats) {
                         automats = newAutomats;
                         renderAutomats();
-                        // Also convert next section textareas
                         const nextSection = document.querySelector('.next-section');
                         if (nextSection) {
                             const textareas = nextSection.querySelectorAll('textarea');
@@ -381,25 +336,20 @@ function startSyncBehavior() {
             }
         });
         
-        // Also listen for changes in the same window (for testing)
-        // Note: storage event only fires in other windows, so we use a custom event
         window.addEventListener('localStorageChange', () => {
             loadDisplayValues();
         });
         
-        // Poll for changes (fallback for same-window updates)
         let lastUpdateTime = localStorage.getItem('lastUpdateTime');
         let lastAutomats = parseInt(localStorage.getItem('automats') || '1');
         setInterval(() => {
             const currentUpdateTime = localStorage.getItem('lastUpdateTime');
             const currentAutomats = parseInt(localStorage.getItem('automats') || '1');
             
-            // Check if automats count changed
             if (currentAutomats !== lastAutomats) {
                 lastAutomats = currentAutomats;
                 automats = currentAutomats;
                 renderAutomats();
-                // Also convert next section textareas
                 const nextSection = document.querySelector('.next-section');
                 if (nextSection) {
                     const textareas = nextSection.querySelectorAll('textarea');
