@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="sl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pikado Brekovice</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Pikado Brekovice</h1>
+
+    <div class="container">
+        <div class="column">
+            <h2>AVTOMAT 1</h2>
+            <textarea id="v1" placeholder="Igralec 1"></textarea>
+            <textarea id="v2" placeholder="Igralec 2"></textarea>
+            <button onclick="novPar(1)">NOV PAR</button>
+        </div>
+
+        <div class="column">
+            <h2>AVTOMAT 2</h2>
+            <textarea id="v3" placeholder="Igralec 1"></textarea>
+            <textarea id="v4" placeholder="Igralec 2"></textarea>
+            <button onclick="novPar(2)">NOV PAR</button>
+        </div>
+
+        <div class="column">
+            <h2>AVTOMAT 3</h2>
+            <textarea id="v5" placeholder="Igralec 1"></textarea>
+            <textarea id="v6" placeholder="Igralec 2"></textarea>
+            <button onclick="novPar(3)">NOV PAR</button>
+        </div>
+    </div>
+
+    <div class="next-section">
+        <h3>Naslednji</h3>
+        <div class="next-pair">
+            <textarea id="v7"></textarea>
+            <textarea id="v8"></textarea>
+        </div>
+
+        <h3>Naslednji naslednji</h3>
+        <div class="next-pair">
+            <textarea id="v9"></textarea>
+            <textarea id="v10"></textarea>
+        </div>
+    </div>
+
+    <div id="adminPanel" style="margin-top: 30px;">
+        <button onclick="showHistory()">ZGODOVINA</button>
+        <button style="background:#d9534f;" onclick="clearHistory()">BRISANJE ZGODOVINE</button>
+    </div>
+
+    <div id="overlay" onclick="closeHistory()"></div>
+    <div id="historyModal">
+        <h2>Zgodovina sprememb</h2>
+        <div id="historyContent"></div>
+        <button style="margin-top:10px;" onclick="closeHistory()">Zapri</button>
+    </div>
+
+    <div id="refreshTimer">Osveži čez: <span id="countdown">15</span>s</div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
