@@ -1,37 +1,21 @@
 <!DOCTYPE html>
 <html lang="sl">
-
 <head>
     <meta charset="UTF-8">
-    <title>Pikado Brekovice</title>
+    <title id="pageTitle">Pikado</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <h1>Pikado Brekovice</h1>
+    <h1>
+        <input id="mainTitle" value="Pikado" />
+    </h1>
 
-    <div class="container">
-        <div class="column">
-            <h2>AVTOMAT 1</h2>
-            <textarea id="v1" placeholder="Igralec 1"></textarea>
-            <textarea id="v2" placeholder="Igralec 2"></textarea>
-            <button onclick="novPar(1)">NOV PAR</button>
-        </div>
-
-        <div class="column">
-            <h2>AVTOMAT 2</h2>
-            <textarea id="v3" placeholder="Igralec 1"></textarea>
-            <textarea id="v4" placeholder="Igralec 2"></textarea>
-            <button onclick="novPar(2)">NOV PAR</button>
-        </div>
-
-        <div class="column">
-            <h2>AVTOMAT 3</h2>
-            <textarea id="v5" placeholder="Igralec 1"></textarea>
-            <textarea id="v6" placeholder="Igralec 2"></textarea>
-            <button onclick="novPar(3)">NOV PAR</button>
-        </div>
+    <div class="controls" id="adminControls">
+        <button onclick="addAvtomat()">+ Dodaj avtomat</button>
+        <button onclick="removeAvtomat()">− Odstrani avtomat</button>
     </div>
+
+    <div class="container" id="automatsContainer"></div>
 
     <div class="next-section">
         <h3>Naslednji</h3>
@@ -40,7 +24,7 @@
             <textarea id="v8"></textarea>
         </div>
 
-        <h3>Naslednji naslednji</h3>
+        <h3>V čakalnici</h3>
         <div class="next-pair">
             <textarea id="v9"></textarea>
             <textarea id="v10"></textarea>
@@ -59,9 +43,6 @@
         <button style="margin-top:10px;" onclick="closeHistory()">Zapri</button>
     </div>
 
-    <div id="refreshTimer">Osveži čez: <span id="countdown">15</span>s</div>
-
     <script src="script.js"></script>
 </body>
-
 </html>
