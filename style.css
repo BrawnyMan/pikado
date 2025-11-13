@@ -9,7 +9,7 @@
 }
 
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: 'Rubik', 'Segoe UI', Arial, sans-serif;
     background: var(--bg);
     margin: 0;
     padding: 20px;
@@ -20,7 +20,7 @@ body {
 #mainTitle {
     font-size: 32px;
     font-weight: bold;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: 'Rubik', 'Segoe UI', Arial, sans-serif;
     border: none;
     background: transparent;
     text-align: center;
@@ -78,7 +78,7 @@ body {
     width: 100%;
     font-size: 18px;
     font-weight: bold;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: 'Rubik', 'Segoe UI', Arial, sans-serif;
     margin-bottom: 10px;
     padding: 6px;
     border-radius: 8px;
@@ -105,7 +105,7 @@ textarea {
     text-align: center;
     font-weight: bold;
     font-size: 28px;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: 'Rubik', 'Segoe UI', Arial, sans-serif;
     line-height: 60px;
     border-radius: 10px;
     border: 1px solid #aaa;
@@ -207,7 +207,7 @@ button:disabled {
     width: 100%;
     font-size: 18px;
     font-weight: bold;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: 'Rubik', 'Segoe UI', Arial, sans-serif;
     margin-bottom: 10px;
     padding: 6px;
     text-align: center;
@@ -223,7 +223,7 @@ button:disabled {
     text-align: center;
     font-weight: bold;
     font-size: 28px;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: 'Rubik', 'Segoe UI', Arial, sans-serif;
     line-height: 60px;
     display: flex;
     align-items: center;
@@ -242,7 +242,7 @@ button:disabled {
 .main-title-display {
     font-size: 48px;
     font-weight: bold;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: 'Rubik', 'Segoe UI', Arial, sans-serif;
     text-align: center;
     color: var(--primary);
     border: none;
