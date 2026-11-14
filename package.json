@@ -1,0 +1,20 @@
+{
+  "name": "darts-live",
+  "version": "5.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server.js",
+    "test": "node --test",
+    "dev": "node --env-file-if-exists=.env server.js"
+  },
+  "dependencies": {
+    "ws": "8.18.3"
+  },
+  "devDependencies": {
+    "jsdom": "^26.1.0"
+  }
+}

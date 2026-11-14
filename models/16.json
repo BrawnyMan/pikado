@@ -1,0 +1,7 @@
+{
+  "id": "single-16",
+  "format": "single-elimination",
+  "playerCount": 16,
+  "roundNames": ["Round of 16", "Quarterfinals", "Semifinals", "Final"],
+  "defaultTargets": [2, 2, 2, 2]
+}
